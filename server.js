@@ -8,7 +8,17 @@ const authRoutes = require("./routes/auth");
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",          // local Vite
+      "https://google-auth-delta-nine.vercel.app/" // production frontend
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 // Routes
